@@ -48,7 +48,7 @@ body {
   .create-account:hover {
     background-color: rgb(246, 84, 84); /* Adjusted hover color for orange */
   }
-}
+
 
 .site-header {
   display: flex;
@@ -68,11 +68,13 @@ body {
 }
 
 .main-content {
-  display: flex;
+  display: absolute;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url("../background.jpg");
+  background-image: url("../loginPageImg.png");
+  background-position: center;
+  background-size: cover;
 }
 
 .create-account {
