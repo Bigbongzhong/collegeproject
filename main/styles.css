@@ -4,7 +4,12 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
   }
-  
+  img {
+    max-width: 100%;
+    height: auto;
+    z-index: -10;
+    display: absolute;
+  }
   .site-header {
     display: flex;
     justify-content: space-between;
@@ -26,6 +31,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 80vh;
+    background-image:url('../pexels-ian-panelo-8669634.jpg') ;
   }
   
   .create-account {
