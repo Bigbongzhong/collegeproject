@@ -48,3 +48,47 @@ body {
   .create-account:hover {
     background-color: rgb(246, 84, 84); /* Adjusted hover color for orange */
   }
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #8B0000; /* Changed to dark red */
+  color: white;
+  box-shadow: 0 50px 10px 10px black;
+}
+
+.header-left a,
+.header-right a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("../background.jpg");
+}
+
+.create-account {
+  background-color: red; /* Changed to orange */
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-account:hover {
+  background-color: rgb(246, 84, 84);
+}
+.create-account:active {
+  background-color: rgb(255, 0, 0);
+}
