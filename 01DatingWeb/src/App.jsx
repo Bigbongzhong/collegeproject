@@ -2,10 +2,11 @@ import { useState } from 'react'
 import './App.css'
 import '../components/guidlines'
 import Guidelines from '../components/guidlines'
+import Login from '../components/login'
 
 function App() {
   const [guideShow, setGuideShow] = useState(false)
-  
+  const [loginShow, setLoginShow] = useState(false)
   function onC() {
     
   }
@@ -15,7 +16,7 @@ function App() {
       <div className="header-left" onClick={()=>setGuideShow(!guideShow)}>
         <a>Guidelines</a>
       </div>
-      <div className="header-right">
+      <div className="header-right" onClick={()=>setLoginShow(!loginShow)}>
         <a>Login</a>
       </div>
     </header>
@@ -25,6 +26,7 @@ function App() {
     </main>
     </div>
     <Guidelines show={guideShow}/>
+    <Login show={loginShow}/>
     </>
   )
 }
