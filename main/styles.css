@@ -3,6 +3,7 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
+    
   }
   img {
     max-width: 100%;
@@ -10,44 +11,8 @@ body {
     z-index: -10;
     display: absolute;
   }
-  .site-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #8B0000; /* Changed to dark red */
-    color: white;
-  }
+
   
-  .header-left a,
-  .header-right a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-  }
-  
-  .main-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
-    background-image:url('../pexels-ian-panelo-8669634.jpg') ;
-  }
-  
-  .create-account {
-    background-color: red; /* Changed to orange */
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .create-account:hover {
-    background-color: rgb(246, 84, 84); /* Adjusted hover color for orange */
-  }
 
 
 .site-header {
@@ -67,17 +32,24 @@ body {
   font-size: 16px;
 }
 
-.main-content {
-  display: absolute;
-  justify-content: center;
-  align-items: center;
+.containerForImageAndButton{
+  position: relative;
   height: 100vh;
+}
+.main-content {
+  height: 100%;
+  width: 100%;
   background-image: url("../loginPageImg.png");
   background-position: center;
   background-size: cover;
+  filter: blur(2px);
 }
 
 .create-account {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: red; /* Changed to orange */
   color: white;
   border: none;
@@ -86,6 +58,8 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  filter:none;
+  z-index: 10;
 }
 
 .create-account:hover {
