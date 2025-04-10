@@ -1,12 +1,10 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import '../components/guidlines'
 import Guidelines from '../components/guidlines'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [guideShow, setGuideShow] = useState(false)
   
   function onC() {
     
@@ -14,7 +12,7 @@ function App() {
   return (
     <>
       <header className="site-header">
-      <div className="header-left" onClick={onC}>
+      <div className="header-left" onClick={()=>setGuideShow(!guideShow)}>
         <a>Guidelines</a>
       </div>
       <div className="header-right">
@@ -26,7 +24,7 @@ function App() {
     <main className="main-content" >
     </main>
     </div>
-    <Guidelines />
+    <Guidelines show={guideShow}/>
     </>
   )
 }

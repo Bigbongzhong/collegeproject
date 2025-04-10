@@ -1,6 +1,6 @@
-function Guidelines(){
+function Guidelines(prop){
     return (
-        <div className="guidelines">
+        <div className={prop.show ? "guidelines guidelinesShow ": "guidelines"}>
             <h1>Guidelines</h1>
             <p>Welcome to our dating website! We are committed to providing a safe and enjoyable experience for all our users. Please read the following guidelines carefully:</p>
             <h2>1. Respect Others</h2>
