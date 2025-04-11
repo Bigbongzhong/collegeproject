@@ -14,9 +14,9 @@ img {
   display: absolute;
 }
 .site-header {
-display: flex;
-position: sticky;
-top: 0;
+  display: flex;
+  position: sticky;
+  top: 0;
 z-index: 50;
 justify-content: space-between;
 align-items: center;
@@ -28,23 +28,23 @@ box-shadow: 0 2px 10px 1px black;
 
 .header-left a,
 .header-right a {
-color: white;
-text-decoration: none;
-font-size: 16px;
-cursor: pointer;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .containerForImageAndButton{
-position: relative;
-height: 100vh;
+  position: relative;
+  height: 100vh;
 }
 .main-content {
-height: 100%;
-width: 100%;
-background-image: url("../loginPageImg.png");
-background-position: center;
-background-size: cover;
-filter: blur(2px);
+  height: 100%;
+  width: 100%;
+  background-image: url("../loginPageImg.png");
+  background-position: center;
+  background-size: cover;
+  filter: blur(2px);
 }
 
 .create-account {
@@ -64,10 +64,10 @@ z-index: 10;
 }
 
 .create-account:hover {
-background-color: rgb(246, 84, 84);
+  background-color: rgb(246, 84, 84);
 }
 .create-account:active {
-background-color: rgb(255, 0, 0);
+  background-color: rgb(255, 0, 0);
 }
 .guidelines{
   padding: 1.2rem;
@@ -81,7 +81,7 @@ background-color: rgb(255, 0, 0);
   aspect-ratio: 2;
   max-width: 500px;
   width: 60%;
-  z-index: 100;
+  z-index: 102;
   border-radius: 0.6rem;
   transition: 0.35s ease-in-out;
 }
@@ -101,10 +101,17 @@ background-color: rgb(255, 0, 0);
   aspect-ratio: 2;
   max-width: 300px;
   width: 60%;
-  z-index: 100;
+  z-index: 102;
   border-radius: 0.6rem;
   transition: 0.35s ease-in-out;
 }
 .loginContainerShow{
   top: 50%;
+}
+.modalOverlay{
+  width: 100%;
+  position: fixed;  
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);   
+  z-index: 101;
 }
