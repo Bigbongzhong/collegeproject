@@ -36,6 +36,7 @@ function App() {
 },[loginref]);
   return (
     <>
+      {(guideShow || loginShow) && <div className="modalOverlay" />}
       <header className="site-header">
       <div className="header-left" onClick={()=>setGuideShow(!guideShow)} ref={guideref}>
         <a>Guidelines</a>
