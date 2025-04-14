@@ -1,6 +1,6 @@
-export default function Login(props){
+function CreateAccount(props){
     return (
-        <div className={props.show ? "createContainer createContainerShow ": "createContainer"+"h-1/2 max-w-5/3 p-4 absolute z-30"}>
+        <div className={props.show ? "createContainer createContainerShow ": "createContainer"}>
             <form action="" method="GET">
                 <label  htmlFor="name">Name : </label><br />
                 <input className="pb-2" type="text" name="name" id="name" placeholder="only@you.com" /><br />
@@ -16,3 +16,4 @@ export default function Login(props){
         </div>
     )
 }
+export default CreateAccount

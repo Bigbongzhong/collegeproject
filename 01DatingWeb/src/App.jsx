@@ -8,9 +8,9 @@ import CreateAccount from "../components/createAccount"
 function App() {
   const [guideShow, setGuideShow] = useState(false)
   const [loginShow, setLoginShow] = useState(false)
-  const guideref = useRef();
-  const loginref = useRef();
-  const overlayRef = useRef();
+  const [accountShow, setAccountShow] = useState(false)
+  const overlayRef = useRef(null);
+  const accountRef = useRef(null);
   useEffect(()=>{
   const handleClick = (e)=>{
     if(!(overlayRef.current && !overlayRef.current.contains(e.target))){
@@ -27,6 +27,20 @@ function App() {
   useEffect(()=>{
   const handleClick = (e)=>{
     if(!(overlayRef.current && !overlayRef.current.contains(e.target))){
+      setAccountShow(false)
+      
+    }
+    console.log(e.target);
+  };
+  document.addEventListener('pointerdown', handleClick)
+  return ()=>{
+    document.removeEventListener('pointerdown', handleClick)
+  };
+},[overlayRef]);
+
+  useEffect(()=>{
+  const handleClick = (e)=>{
+    if(!(overlayRef.current && !overlayRef.current.contains(e.target))){
       setLoginShow(false)
     }
   };
@@ -37,21 +51,22 @@ function App() {
 },[overlayRef]);
   return (
     <>
-      {(guideShow || loginShow) && <div className="modalOverlay" ref={overlayRef} />}
+      {(guideShow || loginShow || accountShow) && <div className="modalOverlay" ref={overlayRef} />}
       <header className="site-header">
-      <div className="header-left" onClick={()=>setGuideShow(!guideShow)} ref={guideref}>
+      <div className="header-left" onClick={()=>setGuideShow(!guideShow)}>
         <a>Guidelines</a>
       </div>
-      <div className="header-right" onClick={()=>setLoginShow(!loginShow)} ref={loginref}>
+      <div className="header-right" onClick={()=>setLoginShow(!loginShow)}>
         <a>Login</a>
       </div>
     </header>
     <div className="containerForImageAndButton">
-      <button className="create-account">Create Account</button>
+      <button className="create-account" onClick={()=>setAccountShow(!accountShow)}>Create Account</button>
     <main className="main-content" >
     </main>
-    <CreateAccount />
+    
     </div>
+    <CreateAccount show={accountShow}/>
     <Guidelines show={guideShow}/>
     <Login show={loginShow}/>
     </>
