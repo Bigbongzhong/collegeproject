@@ -3,6 +3,7 @@ import './App.css'
 import '../components/guidlines'
 import Guidelines from '../components/guidlines'
 import Login from '../components/login'
+import CreateAccount from "../components/createAccount"
 
 function App() {
   const [guideShow, setGuideShow] = useState(false)
@@ -49,6 +50,7 @@ function App() {
       <button className="create-account">Create Account</button>
     <main className="main-content" >
     </main>
+    <CreateAccount />
     </div>
     <Guidelines show={guideShow}/>
     <Login show={loginShow}/>
