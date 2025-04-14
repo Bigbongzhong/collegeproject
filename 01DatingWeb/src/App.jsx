@@ -9,9 +9,10 @@ function App() {
   const [loginShow, setLoginShow] = useState(false)
   const guideref = useRef();
   const loginref = useRef();
+  const overlayRef = useRef();
   useEffect(()=>{
   const handleClick = (e)=>{
-    if(guideref.current && !guideref.current.contains(e.target)){
+    if(!(overlayRef.current && !overlayRef.current.contains(e.target))){
       setGuideShow(false)
       
     }
@@ -21,10 +22,10 @@ function App() {
   return ()=>{
     document.removeEventListener('pointerdown', handleClick)
   };
-},[guideref]);
+},[overlayRef]);
   useEffect(()=>{
   const handleClick = (e)=>{
-    if(loginref.current && !loginref.current.contains(e.target)){
+    if(!(overlayRef.current && !overlayRef.current.contains(e.target))){
       setLoginShow(false)
     }
   };
@@ -32,10 +33,10 @@ function App() {
   return ()=>{
     document.removeEventListener('click', handleClick)
   };
-},[loginref]);
+},[overlayRef]);
   return (
     <>
-      {(guideShow || loginShow) && <div className="modalOverlay" />}
+      {(guideShow || loginShow) && <div className="modalOverlay" ref={overlayRef} />}
       <header className="site-header">
       <div className="header-left" onClick={()=>setGuideShow(!guideShow)} ref={guideref}>
         <a>Guidelines</a>
