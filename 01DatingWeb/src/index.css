@@ -118,19 +118,19 @@ z-index: 10;
 .createContainer{
   padding: 1.2rem;
   position: fixed;
-  font-size: 10px;
-  width: 300px;
-  height: 300px;
+  top: 50%;
+  left: 50%;
   background-color:#EFDFBB;
   color:rgb(66, 66, 66);
-  /* aspect-ratio: 2; */
-  /* z-index: 102; */
+  aspect-ratio: 2;
+  max-width: 400px;
+  height: 250px;
+  z-index: 101;
   border-radius: 0.6rem;
   transform: translate(-50%, -50%) scale(0);
-  transition: 0.35s ease-in-out;
+  transition: 0.3s ease-in-out;
   
 }
 .createContainerShow{
   transform: translate(-50%, -50%) scale(1);
 }
-/* "h-1/2 max-w-5/3 p-4 absolute z-30" */
