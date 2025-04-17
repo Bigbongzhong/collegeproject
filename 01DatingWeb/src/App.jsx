@@ -4,6 +4,7 @@ import '../components/guidlines'
 import Guidelines from '../components/guidlines'
 import Login from '../components/login'
 import CreateAccount from "../components/createAccount"
+import Webfooter from "../components/footer"
 
 function App() {
   const [guideShow, setGuideShow] = useState(false)
@@ -15,9 +16,7 @@ function App() {
   const handleClick = (e)=>{
     if(!(overlayRef.current && !overlayRef.current.contains(e.target))){
       setGuideShow(false)
-      
     }
-    console.log(e.target);
   };
   document.addEventListener('pointerdown', handleClick)
   return ()=>{
@@ -28,9 +27,7 @@ function App() {
   const handleClick = (e)=>{
     if(!(overlayRef.current && !overlayRef.current.contains(e.target))){
       setAccountShow(false)
-      
     }
-    console.log(e.target);
   };
   document.addEventListener('pointerdown', handleClick)
   return ()=>{
@@ -53,22 +50,25 @@ function App() {
     <>
       {(guideShow || loginShow || accountShow) && <div className="modalOverlay" ref={overlayRef} />}
       <header className="site-header">
-      <div className="header-left" onClick={()=>setGuideShow(!guideShow)}>
-        <a>Guidelines</a>
+        <div className="header-left" onClick={()=>setGuideShow(!guideShow)}>
+          <a>Guidelines</a>
+        </div>
+
+        <div className="header-right" onClick={()=>setLoginShow(!loginShow)}>
+          <a>Login</a>
+        </div>
+      </header>
+
+      <div className="containerForImageAndButton">
+        <button className="create-account" onClick={()=>setAccountShow(!accountShow)}>Create Account</button>
+        <main className="main-content" >
+        </main>
       </div>
-      <div className="header-right" onClick={()=>setLoginShow(!loginShow)}>
-        <a>Login</a>
-      </div>
-    </header>
-    <div className="containerForImageAndButton">
-      <button className="create-account" onClick={()=>setAccountShow(!accountShow)}>Create Account</button>
-    <main className="main-content" >
-    </main>
-    
-    </div>
-    <CreateAccount show={accountShow}/>
-    <Guidelines show={guideShow}/>
-    <Login show={loginShow}/>
+
+      <CreateAccount show={accountShow}/>
+      <Guidelines show={guideShow}/>
+      <Login show={loginShow}/>
+      <Webfooter />
     </>
   )
 }
