@@ -1,7 +1,7 @@
 function Login(props){
     return (
         <div className={props.show ? "loginContainer loginContainerShow ": "loginContainer"} >
-            <h1 className="font-medium ">Log in</h1>
+            <h1>Log in</h1>
             <br />
             <form action="" method="GET">
                 <label htmlFor="loginEmail">Email ID</label><br />

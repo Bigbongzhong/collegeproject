@@ -53,13 +53,12 @@ position: absolute;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
-background-color: red; /* Changed to orange */
+background-color: red;
 color: white;
 border: none;
 padding: 15px 30px;
 font-size: 18px;
 border-radius: 5px;
-cursor: pointer;
 filter:none;
 z-index: 10;
 }
@@ -96,13 +95,13 @@ z-index: 10;
   top: -500px;
   left: 50%;
   translate: -50% -50%;
-  font-size: 10px;
   background-color:#EFDFBB;
   color:rgb(66, 66, 66);
   aspect-ratio: 2;
   max-width: 300px;
   width: 60%;
   z-index: 102;
+  font-weight: bold;
   border-radius: 0.6rem;
   transition: 0.35s ease-in-out;
 }
@@ -125,7 +124,9 @@ z-index: 10;
   color:rgb(66, 66, 66);
   aspect-ratio: 2;
   max-width: 400px;
-  height: 250px;
+  width: 300px;
+  font-weight: bold;
+  height: max-content;
   z-index: 101;
   border-radius: 0.6rem;
   transform: translate(-50%, -50%) scale(0);
@@ -139,4 +140,12 @@ z-index: 10;
 .frontFooter{
   box-shadow: 0 -5px 10px 1px;
   z-index: 10;
+}
+
+input, label{
+  padding: 3px;
+}
+input{
+  background-color: whitesmoke;
+  width: 95%;
 }
