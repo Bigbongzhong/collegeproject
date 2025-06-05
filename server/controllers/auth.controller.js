@@ -34,7 +34,7 @@ export const signup = async (req, res) => {
         //sending jwt token
         generateTokenAndSetCookie(res, user._id);
 
-        sendVerificationEmail(user.email, verificationToken);
+        // sendVerificationEmail(user.email, verificationToken);
         console.log(verificationToken)
 
         res.status(201).json({
@@ -69,7 +69,7 @@ export const verifyEmail = async (req, res) => {
         user.verificationTokenExpiresAt = undefined;
         await user.save();
 
-        await sendWelcomeEmail(user.email, user.name);
+        // await sendWelcomeEmail(user.email, user.name);
 
     	res.status(200).json({
 			success: true,
@@ -100,7 +100,7 @@ export const resendVerifyCode = async (req, res) => {
         user.verificationTokenExpiresAt = Date.now() + 15 * 60 * 1000;
         user.save();
 
-        sendVerificationEmail(user.email, verificationToken);
+        // sendVerificationEmail(user.email, verificationToken);
 
         return res.status(200).json({ success: true, message: "Verification code resend."});
     } catch (error) {
@@ -168,7 +168,7 @@ export const forgotPassword = async (req, res) => {
         user.resetPasswordExpiresAt = Date.now() + 15 * 60 * 1000;//Expires in 15min
         await user.save();
 
-        sendPasswordResetEmail(email, `${process.env.CLIENT_URL}/reset-password/${resetToken}`);
+        // sendPasswordResetEmail(email, `${process.env.CLIENT_URL}/reset-password/${resetToken}`);
 
         res.status(200).json({ success: true, message: "Password reset link sent to your email ", email, resetToken});
     } catch (error) {
