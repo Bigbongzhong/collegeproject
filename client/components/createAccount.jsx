@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 const API_URL = "http://localhost:5000/api/auth";
 
@@ -26,11 +27,11 @@ function CreateAccount(props) {
         
         try {
             await signUp();
+            props.setShow((prev) => !prev)
+            toast.success("Account created.")
         } catch (error) {
             console.log(error);
         }
-
-        console.log(email, name, password)
         
         setName('');
         setEmail('');

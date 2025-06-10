@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect} from 'react'
 import './App.css'
-import '../components/guidlines'
 import Guidelines from '../components/guidlines'
 import Login from '../components/login'
 import CreateAccount from "../components/createAccount"
+import VerifyEmail from '../components/verifyEmail'
 import Webfooter from "../components/footer"
+import { Toaster } from 'react-hot-toast'
 
 function App() {
   const [guideShow, setGuideShow] = useState(false)
@@ -65,10 +66,15 @@ function App() {
         </main>
       </div>
 
-      <CreateAccount show={accountShow}/>
-      <Guidelines show={guideShow}/>
-      <Login show={loginShow}/>
+      <CreateAccount show={accountShow} setShow={setAccountShow}/>
+      <Guidelines show={guideShow} setShow={setGuideShow}/>
+      <Login show={loginShow} setShow={setLoginShow}/>
       <Webfooter />
+      <VerifyEmail />
+      <Toaster
+        position="top-center"
+        reverseOrder={true}
+      />
     </>
   )
 }
