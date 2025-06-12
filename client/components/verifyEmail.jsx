@@ -8,35 +8,41 @@ const API_URL = import.meta.env.MODE === "development" ? "http://localhost:5000/
 const VerifyEmail = () => {
     const [code, setCode] = useState(['', '', '', '', '', '']);
     const inputRefs = useRef([]);
+
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    const [success, setSuccess] = useState(false);
 
     // Handle input change
-    const handleChange = (e, idx) => {
-        const val = e.target.value.replace(/[^0-9]/g, '').slice(0, 1);
+    const handleChange = (value, index) => {
         const newCode = [...code];
-        newCode[idx] = val;
-        setCode(newCode);
 
-        // Move to next input if value entered
-        if (val && idx < 5) {
-            inputRefs.current[idx + 1].focus();
-        }
-        // Move to previous input if deleted
-        if (!val && idx > 0) {
-            inputRefs.current[idx - 1].focus();
+        //Handle pasted content
+        if(value.length > 1){
+            const pastedCode = value.slice(0,6).split('');
+            for(let i = 0; i<6 ; i++)
+                newCode[i] = pastedCode[i] || '';
+            setCode(newCode);
+
+            //Focus on the last non-empty input or first empty one
+            const lastFilledIndex = newCode.findLastIndex((digit) => digit !== '');
+            const focusIndex = lastFilledIndex < 5 ? lastFilledIndex + 1 : 5;
+            inputRefs.current[lastFilledIndex].focus();
+        } else {
+            newCode[index] = value;
+            setCode(newCode);
+
+            //Move focus to next input field
+            if(value && index <5 ){
+                inputRefs.current[index + 1].focus();
+            }
         }
     };
 
-    // Handle paste
-    const handlePaste = (e) => {
-        const paste = e.clipboardData.getData('text').replace(/\D/g, '').slice(0, 6);
-        if (paste.length === 6) {
-            setCode(paste.split(''));
-            inputRefs.current[5].focus();
+    const handleKeyDown = (index, e) => {
+        if(e.key === "Backspace" && !code[index] && index > 0){
+            inputRefs.current[index - 1].focus();
         }
-    };
+    }
 
     // Handle submit
     const handleSubmit = async (e) => {
@@ -51,7 +57,7 @@ const VerifyEmail = () => {
                 return;
             }
             const response = await axios.post(`${API_URL}/verify-email`, { code: codeStr });
-            setSuccess(true);
+            console.log(response.data.message)
             toast.success("Email verified successfully!");
         } catch (err) {
             setError(err.response?.data?.message || "Verification failed.");
@@ -61,6 +67,12 @@ const VerifyEmail = () => {
         }
     };
 
+    useEffect(() => {
+        if(code.every((digit) => digit !== '')){
+            handleSubmit(new Event("submit"));
+        }
+    },[code])
+
     return (
         <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg p-8 mt-8 border border-amber-200">
             <h1 className="text-2xl font-bold text-emerald-700 mb-4 text-center">Verify Your Email</h1>
@@ -68,15 +80,16 @@ const VerifyEmail = () => {
                 Please enter the 6-digit code sent to your email.
             </p>
             <form className="flex flex-col items-center gap-4" onSubmit={handleSubmit}>
-                <div className="flex gap-2 justify-center mb-2" onPaste={handlePaste}>
+                <div className="flex gap-2 justify-between mb-2">
                     {code.map((digit, idx) => (
                         <input
                             key={idx}
                             type="text"
                             inputMode="numeric"
-                            maxLength={1}
+                            maxLength={6}
                             value={digit}
-                            onChange={(e) => handleChange(e, idx)}
+                            onChange={(e) => handleChange(e.target.value, idx)}
+                            onKeyDown={e => handleKeyDown(idx, e)}
                             ref={el => inputRefs.current[idx] = el}
                             className="w-12 h-12 text-center text-xl border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400"
                         />
@@ -90,11 +103,6 @@ const VerifyEmail = () => {
                 >
                     {loading ? "Verifying..." : "Verify"}
                 </button>
-                {success && (
-                    <div className="text-green-600 text-center mt-2">
-                        Email verified! You may now continue.
-                    </div>
-                )}
             </form>
         </div>
     );
